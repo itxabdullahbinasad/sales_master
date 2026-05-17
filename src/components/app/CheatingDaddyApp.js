@@ -564,6 +564,13 @@ export class CheatingDaddyApp extends LitElement {
         }
     }
 
+    async _handleMaximize() {
+        if (window.require) {
+            const { ipcRenderer } = window.require('electron');
+            await ipcRenderer.invoke('window-maximize');
+        }
+    }
+
     async handleHideToggle() {
         if (window.require) {
             const { ipcRenderer } = window.require('electron');
@@ -868,6 +875,14 @@ export class CheatingDaddyApp extends LitElement {
         if (this.currentView === 'onboarding') {
             return html`
                 <div class="fullscreen">
+                    <div class="top-drag-bar">
+                        <span class="titlebar-label">Sales Master</span>
+                        <div class="win-controls">
+                            <button class="win-btn win-minimize" @click=${() => this._handleMinimize()} title="Minimize">&#x2212;</button>
+                            <button class="win-btn win-maximize" @click=${() => this._handleMaximize()} title="Maximize">&#x25A1;</button>
+                            <button class="win-btn win-close" @click=${() => this.handleClose()} title="Close">&#x2715;</button>
+                        </div>
+                    </div>
                     ${this.renderCurrentView()}
                 </div>
             `;
@@ -881,7 +896,7 @@ export class CheatingDaddyApp extends LitElement {
                     <span class="titlebar-label">Sales Master</span>
                     <div class="win-controls">
                         <button class="win-btn win-minimize" @click=${() => this._handleMinimize()} title="Minimize">&#x2212;</button>
-                        <button class="win-btn win-maximize" title="Maximize">&#x25A1;</button>
+                        <button class="win-btn win-maximize" @click=${() => this._handleMaximize()} title="Maximize">&#x25A1;</button>
                         <button class="win-btn win-close" @click=${() => this.handleClose()} title="Close">&#x2715;</button>
                     </div>
                 </div>
