@@ -43,53 +43,64 @@ export class CheatingDaddyApp extends LitElement {
             z-index: 9999;
             display: flex;
             align-items: center;
-            height: 38px;
-            background: transparent;
+            height: 32px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            -webkit-app-region: drag;
         }
 
-        .drag-region {
-            flex: 1;
-            height: 100%;
+        .titlebar-label {
+            padding: 0 var(--space-md);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            color: var(--text-secondary);
             -webkit-app-region: drag;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .top-drag-bar.hidden {
             display: none;
         }
 
-        .traffic-lights {
+        .win-controls {
             display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0 var(--space-md);
+            align-items: stretch;
             height: 100%;
             -webkit-app-region: no-drag;
+            flex-shrink: 0;
         }
 
-        .traffic-light {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+        .win-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 100%;
             border: none;
+            background: transparent;
+            color: var(--text-secondary);
             cursor: pointer;
+            transition: background 0.1s ease, color 0.1s ease;
             padding: 0;
-            transition: opacity 0.15s ease;
+            flex-shrink: 0;
         }
 
-        .traffic-light:hover {
-            opacity: 0.8;
+        .win-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
         }
 
-        .traffic-light.close {
-            background: #FF5F57;
+        .win-btn.win-close:hover {
+            background: #C42B1C;
+            color: #ffffff;
         }
 
-        .traffic-light.minimize {
-            background: #FEBC2E;
-        }
-
-        .traffic-light.maximize {
-            background: #28C840;
+        .win-btn svg {
+            width: 10px;
+            height: 10px;
         }
 
         .sidebar {
@@ -99,7 +110,7 @@ export class CheatingDaddyApp extends LitElement {
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            padding: 42px 0 var(--space-md) 0;
+            padding: 32px 0 var(--space-md) 0;
             transition: width var(--transition), min-width var(--transition), opacity var(--transition);
         }
 
@@ -399,7 +410,7 @@ export class CheatingDaddyApp extends LitElement {
             this._localVersion = await cheatingDaddy.getVersion();
             this.requestUpdate();
 
-            const res = await fetch('https://raw.githubusercontent.com/sohzm/cheating-daddy/refs/heads/master/package.json');
+            const res = await fetch('https://raw.githubusercontent.com/itxabdullahbinasad/sales_master/refs/heads/main/package.json');
             if (!res.ok) return;
             const remote = await res.json();
             const remoteVersion = remote.version;
@@ -620,7 +631,7 @@ export class CheatingDaddyApp extends LitElement {
     async handleAPIKeyHelp() {
         if (window.require) {
             const { ipcRenderer } = window.require('electron');
-            await ipcRenderer.invoke('open-external', 'https://cheatingdaddy.com/help/api-key');
+            await ipcRenderer.invoke('open-external', 'https://aistudio.google.com/app/apikey');
         }
     }
 
@@ -792,7 +803,7 @@ export class CheatingDaddyApp extends LitElement {
         return html`
             <div class="sidebar ${this._isLiveMode() ? 'hidden' : ''}">
                 <div class="sidebar-brand">
-                    <h1>Cheating Daddy</h1>
+                    <h1>Sales Master</h1>
                 </div>
                 <nav class="sidebar-nav">
                     ${items.map(item => html`
@@ -808,7 +819,7 @@ export class CheatingDaddyApp extends LitElement {
                 </nav>
                 <div class="sidebar-footer">
                     ${this._updateAvailable ? html`
-                        <button class="update-btn" @click=${() => this.handleExternalLinkClick('https://cheatingdaddy.com/download')}>
+                        <button class="update-btn" @click=${() => this.handleExternalLinkClick('https://github.com/itxabdullahbinasad/sales_master/releases')}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5l5-5m-5-7v12" /></svg>
                             Update available
                         </button>
@@ -869,12 +880,18 @@ export class CheatingDaddyApp extends LitElement {
         return html`
             <div class="app-shell">
                 <div class="top-drag-bar ${isLive ? 'hidden' : ''}">
-                    <div class="traffic-lights">
-                        <button class="traffic-light close" @click=${() => this.handleClose()} title="Close"></button>
-                        <button class="traffic-light minimize" @click=${() => this._handleMinimize()} title="Minimize"></button>
-                        <button class="traffic-light maximize" title="Maximize"></button>
+                    <span class="titlebar-label">Sales Master</span>
+                    <div class="win-controls">
+                        <button class="win-btn win-minimize" @click=${() => this._handleMinimize()} title="Minimize">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 1" fill="currentColor"><rect width="10" height="1"/></svg>
+                        </button>
+                        <button class="win-btn win-maximize" title="Maximize">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9"/></svg>
+                        </button>
+                        <button class="win-btn win-close" @click=${() => this.handleClose()} title="Close">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="currentColor"><path d="M0 0L10 10M10 0L0 10" stroke="currentColor" stroke-width="1.2"/></svg>
+                        </button>
                     </div>
-                    <div class="drag-region"></div>
                 </div>
                 ${this.renderSidebar()}
                 <div class="content">
@@ -888,4 +905,4 @@ export class CheatingDaddyApp extends LitElement {
     }
 }
 
-customElements.define('cheating-daddy-app', CheatingDaddyApp);
+customElements.define('sales-master-app', CheatingDaddyApp);

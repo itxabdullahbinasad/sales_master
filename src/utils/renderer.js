@@ -783,7 +783,7 @@ function handleShortcut(shortcutKey) {
 }
 
 // Create reference to the main app element
-const cheatingDaddyApp = document.querySelector('cheating-daddy-app');
+const cheatingDaddyApp = document.querySelector('sales-master-app');
 
 // ============ THEME SYSTEM ============
 const theme = {

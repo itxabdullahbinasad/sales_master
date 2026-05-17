@@ -1,8 +1,8 @@
 {
-    "name": "cheating-daddy",
-    "productName": "cheating-daddy",
+    "name": "sales-master",
+    "productName": "Sales Master",
     "version": "0.7.0",
-    "description": "cheating daddy",
+    "description": "Sales Master - Real-time AI assistant for sales calls, meetings, and presentations",
     "main": "src/index.js",
     "scripts": {
         "start": "electron-forge start",
@@ -12,11 +12,11 @@
         "lint": "echo \"No linting configured\""
     },
     "keywords": [
-        "cheating daddy",
-        "cheating daddy ai",
-        "cheating daddy ai assistant",
-        "cheating daddy ai assistant for interviews",
-        "cheating daddy ai assistant for interviews"
+        "sales master",
+        "sales master ai",
+        "sales master ai assistant",
+        "sales master ai assistant for sales calls",
+        "sales master ai assistant for meetings"
     ],
     "author": {
         "name": "sohzm",
