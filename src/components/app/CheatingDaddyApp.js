@@ -99,8 +99,8 @@ export class CheatingDaddyApp extends LitElement {
         }
 
         .win-btn svg {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
         }
 
         .sidebar {
@@ -883,13 +883,13 @@ export class CheatingDaddyApp extends LitElement {
                     <span class="titlebar-label">Sales Master</span>
                     <div class="win-controls">
                         <button class="win-btn win-minimize" @click=${() => this._handleMinimize()} title="Minimize">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 1" fill="currentColor"><rect width="10" height="1"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="currentColor"><rect x="0" y="5.5" width="12" height="1"/></svg>
                         </button>
                         <button class="win-btn win-maximize" title="Maximize">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.6" y="0.6" width="10.8" height="10.8"/></svg>
                         </button>
                         <button class="win-btn win-close" @click=${() => this.handleClose()} title="Close">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="currentColor"><path d="M0 0L10 10M10 0L0 10" stroke="currentColor" stroke-width="1.2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg>
                         </button>
                     </div>
                 </div>
