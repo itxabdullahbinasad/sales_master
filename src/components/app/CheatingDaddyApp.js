@@ -81,26 +81,24 @@ export class CheatingDaddyApp extends LitElement {
             height: 100%;
             border: none;
             background: transparent;
-            color: var(--text-secondary);
+            color: #aaaaaa;
             cursor: pointer;
             transition: background 0.1s ease, color 0.1s ease;
             padding: 0;
             flex-shrink: 0;
+            font-size: 16px;
+            line-height: 1;
+            font-family: 'Segoe UI Symbol', 'Segoe UI', system-ui, sans-serif;
         }
 
         .win-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
+            background: #2a2a2a;
+            color: #ffffff;
         }
 
         .win-btn.win-close:hover {
             background: #C42B1C;
             color: #ffffff;
-        }
-
-        .win-btn svg {
-            width: 12px;
-            height: 12px;
         }
 
         .sidebar {
@@ -882,15 +880,9 @@ export class CheatingDaddyApp extends LitElement {
                 <div class="top-drag-bar ${isLive ? 'hidden' : ''}">
                     <span class="titlebar-label">Sales Master</span>
                     <div class="win-controls">
-                        <button class="win-btn win-minimize" @click=${() => this._handleMinimize()} title="Minimize">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="currentColor"><rect x="0" y="5.5" width="12" height="1"/></svg>
-                        </button>
-                        <button class="win-btn win-maximize" title="Maximize">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="0.6" y="0.6" width="10.8" height="10.8"/></svg>
-                        </button>
-                        <button class="win-btn win-close" @click=${() => this.handleClose()} title="Close">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg>
-                        </button>
+                        <button class="win-btn win-minimize" @click=${() => this._handleMinimize()} title="Minimize">&#x2212;</button>
+                        <button class="win-btn win-maximize" title="Maximize">&#x25A1;</button>
+                        <button class="win-btn win-close" @click=${() => this.handleClose()} title="Close">&#x2715;</button>
                     </div>
                 </div>
                 ${this.renderSidebar()}
